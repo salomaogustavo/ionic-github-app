@@ -1,19 +1,23 @@
-<ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>
-            Listagem de Repositórios
-        </ion-title>
-    </ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Listagem de Repositórios
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
-<ion-content>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Listagem de Repositórios</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
   <div
     *ngIf="repos"
     style="height: 100vh; display: flex; flex-flow: column; justify-content: flex-start; align-items: center;"
   >
-    <div style="width: 20rem;">
+    <div style="width: 24rem;">
       <div
         *ngFor="let repo of repos"
         style="margin-top: .5rem; margin-bottom: .5rem; display: flex; flex-flow: column; align-items: flex-start; justify-content: space-between; background-color: white; border-radius: .25rem; padding: .5rem; height: 4rem; color: black;"
