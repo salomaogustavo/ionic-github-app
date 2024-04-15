@@ -1,12 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from './services/user.service';
+import { User } from './types/user.class';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnDestroy {
+  gitForm = new FormGroup({
+    user: new FormControl('', Validators.required),
+  });
 
-  constructor() {}
+  public user!: User;
+  private subscription!: Subscription;
 
+  constructor(
+    private userService: UserService,
+  ) { }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+        this.subscription.unsubscribe();
+    }
+  }
+
+  onSubmit() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+    const user = this.gitForm.get('user')?.value;
+
+    if (!user) {
+      return;
+    }
+
+    this.subscription = this.userService
+      .getUser(user)
+      .subscribe(
+        (user: User) => {
+          this.user = user;
+        },
+        (error: Error) => {
+          console.error(error);
+        }
+      );
+  }
 }

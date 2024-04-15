@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Listagem de Repositórios
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div *ngIf="repos">
+        <div *ngFor="let repo of repos" style="margin-top: .25rem;">
+            {{ repo.name }}
+            <div style="display: flex; gap: 1rem; margin-top: .125rem;">
+                <div style="display: flex; gap: .25rem;">
+                    <ion-icon name="star-outline" />{{ repo.stargazers_count }}
+                </div>
+                <div style="display: flex; gap: .25rem;">
+                    <ion-icon name="eye-outline" />{{ repo.watchers_count }}
+                </div>
+                <div style="display: flex; gap: .25rem;">
+                    <ion-icon name="git-branch-outline" />{{ repo.forks_count }}
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

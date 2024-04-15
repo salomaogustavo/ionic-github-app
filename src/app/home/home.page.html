@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      GitHub
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,62 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">GitHub</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div
+    id="container"
+    style="display: flex; flex-flow: column; gap: .25rem;"
+  >
+    <form
+      [formGroup]="gitForm"
+      (ngSubmit)="onSubmit()"
+    >
+
+      <ion-item>
+        <ion-input
+          formControlName="user"
+          type="text"
+          placeholder="Digite um perfil válido no github..."
+          label="Usuário"
+          labelPlacement="floating"
+        ></ion-input>
+
+        <ion-button type="submit">
+          <ion-icon name="checkmark" />
+        </ion-button>
+      </ion-item>
+
+    </form>
+
+    <div
+      *ngIf="user"
+      style="display: flex; justify-content: center; align-items: center;"
+    >
+      <a
+        [routerLink]="['/repos', user.login]"
+        style="display: flex; justify-content: center; align-items: center; gap: .25rem;"
+      >
+        <div style="aspect-ratio: 1 / 1; position: relative; display: flex; height: 4rem; width: 4rem; border-radius: 100%; justify-content: center; align-items: center; overflow: hidden; width: fit-content;">
+          <div style="position: relative; height: 100%; width: 100%; border-radius: 100%;">
+            <img
+              [alt]="user.name"
+              style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
+              [src]="user.avatar_url"
+            >
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: flex-start; flex-flow: column; gap: .25rem;">
+          <span style="color: white; font-weight: 700;">
+            {{ user.name }}
+          </span>
+          <span style="color: gray;">
+            {{ user.bio }}
+          </span>
+        </div>
+      </a>
+    </div>
   </div>
 </ion-content>

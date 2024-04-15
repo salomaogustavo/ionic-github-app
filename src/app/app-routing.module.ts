@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'repos/:user',
+    loadChildren: () => import('./repos/repos.module').then( m => m.ReposModule)
+  },
 ];
 
 @NgModule({
