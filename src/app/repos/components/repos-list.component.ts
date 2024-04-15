@@ -9,9 +9,11 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ReposListComponent implements OnInit, OnDestroy {
 
+    public url = "https://github.com/";
+    public user!: string;
     public repos!: Repo[];
     private subscription!: Subscription;
-    
+
     constructor(
         private reposService: ReposService,
         private route: ActivatedRoute,
@@ -22,7 +24,9 @@ export class ReposListComponent implements OnInit, OnDestroy {
             const user = params.get('user')?.toString();
 
             if (user) {
-                this.fetchRepo(user);
+                this.user = user;
+
+                this.fetchRepo(this.user);
             }
         });
     }
