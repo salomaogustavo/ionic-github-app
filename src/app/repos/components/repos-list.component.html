@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Listagem de Repositórios</ion-title>
@@ -15,9 +15,9 @@
 
   <div
     *ngIf="repos"
-    style="height: 100vh; display: flex; flex-flow: column; justify-content: flex-start; align-items: center;"
+    style="height: 100%; display: flex; flex-flow: column; justify-content: flex-start; align-items: center; padding-bottom: 10.75rem;"
   >
-    <div style="width: 24rem;">
+    <div style="width: 24rem; height:100vh; overflow-y: scroll;">
       <a
         *ngFor="let repo of repos"
         [href]="url + user + '/' + repo.name"
