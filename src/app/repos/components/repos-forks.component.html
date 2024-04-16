@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Listagem de Repositórios
+      Listagem de Forks
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,55 +9,55 @@
 <ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Listagem de Repositórios</ion-title>
+      <ion-title size="large">Listagem de Forks</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div
-    *ngIf="repos"
+    *ngIf="forks"
     style="height: 100%; display: flex; flex-flow: column; justify-content: flex-start; align-items: center;"
   >
     <div style="width: 24rem; height:100vh; overflow-y: scroll;">
       <a
-        *ngFor="let repo of repos"
-        [href]="repo.html_url"
+        *ngFor="let fork of forks"
+        [href]="fork.html_url"
         target="_blank"
         style="margin-top: .5rem; margin-bottom: .5rem; display: flex; flex-flow: column; align-items: flex-start; justify-content: space-between; background-color: white; border-radius: .25rem; padding: .5rem; height: 4.5rem; color: black; text-decoration: none;"
       >
         <span style="width: 100%; overflow: hidden; text-overflow: ellipsis;">
-          {{ repo.name }}
+          {{ fork.name }}
         </span>
         <div style="width: 100%; display: flex; justify-content: space-around; margin-top: .125rem;">
           <div style="display: flex; gap: .25rem; justify-content: center; align-items: center;">
             <a
-              [routerLink]="['/repos', user, repo.name, 'stargazers']"
+              [routerLink]="['/repos', fork.owner.login, fork.name, 'stargazers']"
               style="display: flex; flex-flow: row; align-items: center; gap: .25rem; text-decoration: none; color: darkslategrey; background-color: lightgrey; border-radius: .25rem; padding-top: .125rem; padding-bottom: .125rem; padding-left: .5rem; padding-right: .5rem;"
             >
               <ion-icon name="star-outline" />
               <span>
-                {{ repo.stargazers_count }}
+                {{ fork.stargazers_count }}
               </span>
             </a>
           </div>
           <div style="display: flex; gap: .25rem; justify-content: center; align-items: center;">
             <a
-              [routerLink]="['/repos', user, repo.name, 'watchers']"
+              [routerLink]="['/repos', fork.owner.login, fork.name, 'watchers']"
               style="display: flex; flex-flow: row; align-items: center; gap: .25rem; text-decoration: none; color: darkslategrey; background-color: lightgrey; border-radius: .25rem; padding-top: .125rem; padding-bottom: .125rem; padding-left: .5rem; padding-right: .5rem;"
             >
               <ion-icon name="eye-outline" />
               <span>
-                {{ repo.watchers_count }}
+                {{ fork.watchers_count }}
               </span>
             </a>
           </div>
           <div style="display: flex; gap: .25rem; justify-content: center; align-items: center;">
             <a
-              [routerLink]="['/repos', user, repo.name, 'forks']"
+              [routerLink]="['/repos', fork.owner.login, fork.name, 'forks']"
               style="display: flex; flex-flow: row; align-items: center; gap: .25rem; text-decoration: none; color: darkslategrey; background-color: lightgrey; border-radius: .25rem; padding-top: .25rem; padding-bottom: .25rem; padding-left: .5rem; padding-right: .5rem;"
             >
               <ion-icon name="git-branch-outline" />
               <span>
-                {{ repo.forks_count }}
+                {{ fork.forks_count }}
               </span>
             </a>
           </div>

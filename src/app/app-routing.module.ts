@@ -15,6 +15,14 @@ const routes: Routes = [
     path: 'repos/:user',
     loadChildren: () => import('./repos/repos.module').then( m => m.ReposModule)
   },
+  {
+    path: 'repos/:user/:repo/forks',
+    loadChildren: () => import('./repos/repos.module').then( m => m.ReposModule)
+  },
+  {
+    path: 'repos/:user/:repo/:type',
+    loadChildren: () => import('./users/users.module').then( m => m.UsersModule)
+  },
 ];
 
 @NgModule({

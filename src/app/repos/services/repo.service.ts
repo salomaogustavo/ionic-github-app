@@ -18,4 +18,9 @@ export class ReposService {
     return this.httpClient
       .get<Repo[]>(`${this.url}users/${user}/repos`);
   }
+
+  getForks(user: string, repo: string): Observable<Repo[]> {
+    return this.httpClient
+      .get<Repo[]>(`${this.url}repos/${user}/${repo}/forks`);
+  }
 }
