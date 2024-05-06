@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      GitHub
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">GitHub</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="height: 100%; display: flex; flex-flow: column; justify-content: flex-start; align-items: center;">
+    <div style="width: 24rem;">
+      <form
+        [formGroup]="gitForm"
+        (ngSubmit)="onSubmit()"
+      >
+
+        <ion-item>
+          <ion-input
+            formControlName="user"
+            type="text"
+            placeholder="Digite um perfil válido no github..."
+            label="Usuário"
+            labelPlacement="floating"
+          ></ion-input>
+
+          <ion-button
+            type="submit"
+            [disabled]="gitForm.invalid"
+          >
+            <ion-icon name="search-outline" />
+          </ion-button>
+        </ion-item>
+
+      </form>
+
+      <div
+        *ngIf="user"
+        style="display: flex; justify-content: flex-start; align-items: center; margin-top: .5rem; background-color: white; border-radius: .25rem; padding: .5rem;"
+      >
+        <a
+          [routerLink]="['/repos', user.login]"
+          style="width: 100%; display: flex; justify-content: space-between; align-items: center; text-decoration: none;"
+        >
+          <div style="display: flex; justify-content: center; align-items: center; gap: .5rem;">
+            <div style="aspect-ratio: 1 / 1; position: relative; display: flex; height: 4rem; min-width: 4rem; border-radius: 100%; justify-content: center; align-items: center; overflow: hidden; width: fit-content; box-shadow: 0 0 0 .125rem royalblue;">
+              <div style="position: relative; height: 100%; width: 100%; border-radius: 100%;">
+                <img
+                  [alt]="user.name"
+                  style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
+                  [src]="user.avatar_url"
+                >
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: flex-start; flex-flow: column;">
+              <span style="color: black; font-weight: 700;">
+                {{ user.name }}
+              </span>
+              <span style="color: darkslategrey;">
+                {{ user.bio }}
+              </span>
+            </div>
+          </div>
+
+          <ion-icon
+            name="chevron-forward-outline"
+            style="color: black"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</ion-content>

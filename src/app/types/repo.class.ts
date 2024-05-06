@@ -1,5 +1,5 @@
 import { RepoInterface } from "./repo.interface";
-import { UserInterface } from "../../home/types/user.interface";
+import { UserInterface } from "./user.interface";
 
 export class Repo {
   id: number;
